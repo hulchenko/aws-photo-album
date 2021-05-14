@@ -19,3 +19,5 @@ npm install uuid (encrypted key)
 amplify configure (follow steps in AWS console > default)
 
 npm install aws-amplify @aws-amplify/ui-vue (amplify library for vue, adding new vue components in project)
+
+update main.js with amplify config
