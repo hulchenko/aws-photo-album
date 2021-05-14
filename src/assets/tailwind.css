@@ -4,14 +4,14 @@
 
 @tailwind utilities;
 
-.btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+.btn-indigo {
+  @apply bg-indigo-500 text-white font-bold py-2 px-4 rounded;
 }
 
-.btn-blue:hover {
-  @apply bg-blue-400;
+.btn-indigo:hover {
+  @apply bg-indigo-400;
 }
 
-.btn-blue:focus {
+.btn-indigo:focus {
   @apply outline-none;
 }

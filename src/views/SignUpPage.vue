@@ -39,7 +39,7 @@
         />
       </div>
       <!-- eslint-disable -->
-      <button class="btn-blue">Sign Up</button>
+      <button class="btn-indigo">Sign Up</button>
     </form>
     <div v-if="error" class="text-red-600 py-2 text-sm">
       {{ error.message }}
@@ -51,11 +51,11 @@
           >Code</label
         >
         <input
-          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-900 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           v-model="code"
         />
-        <button class="btn-blue" @click="confirmSignUp">Confirm Code</button>
+        <button class="btn-indigo" @click="confirmSignUp">Confirm Code</button>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@ export default {
           username: this.username,
           code: this.code,
         });
-        await this.$store.dispatch('authlogin', {
+        await this.$store.dispatch('auth/login', {
           username: this.username,
           password: this.password,
         });
@@ -108,5 +108,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,12 +1,20 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!-- <router-link to="/">Home</router-link> | -->
-      <!-- <router-link to="/about">About</router-link> -->
+      <Nav />
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import Nav from '@/components/Nav.vue';
+export default {
+  components: {
+    Nav: Nav,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -22,7 +30,6 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
 
     &.router-link-exact-active {
       color: #42b983;

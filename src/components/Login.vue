@@ -23,7 +23,7 @@
         />
       </div>
       <!-- eslint-disable -->
-      <button class="btn-blue">Sign in</button>
+      <button class="btn-indigo">Sign in</button>
     </form>
     <div class="text-red-600 py-2 text-sm">{{ error.message }}</div>
   </div>
