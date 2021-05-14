@@ -25,7 +25,7 @@
       <!-- eslint-disable -->
       <button class="btn-blue">Sign in</button>
     </form>
-    <div class="text-red-800 py-2 text-sm">{{ error.message }}</div>
+    <div class="text-red-600 py-2 text-sm">{{ error.message }}</div>
   </div>
 </template>
 
