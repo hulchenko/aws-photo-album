@@ -1,6 +1,6 @@
 import { Auth } from 'aws-amplify';
 export const auth = {
-  namespace: true,
+  namespaced: true,
   state: { user: null },
   mutations: {
     setUser(state, payload) {

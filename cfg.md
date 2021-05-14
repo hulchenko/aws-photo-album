@@ -25,3 +25,9 @@ update main.js with amplify config
 amplify add auth (Amazon Cognito setup) >> amplify push (will auto update aws-exports.js)
 
 setup Auth Vuex Store
+
+create components
+
+update tailwind assets
+
+update views
