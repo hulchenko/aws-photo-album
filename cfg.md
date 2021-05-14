@@ -21,3 +21,7 @@ amplify configure (follow steps in AWS console > default)
 npm install aws-amplify @aws-amplify/ui-vue (amplify library for vue, adding new vue components in project)
 
 update main.js with amplify config
+
+amplify add auth (Amazon Cognito setup) >> amplify push (will auto update aws-exports.js)
+
+setup Auth Vuex Store

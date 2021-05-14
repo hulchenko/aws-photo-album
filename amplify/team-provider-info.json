@@ -10,6 +10,11 @@
       "StackName": "amplify-amplifyphotobook-dev-181446",
       "StackId": "arn:aws:cloudformation:us-east-2:211899496878:stack/amplify-amplifyphotobook-dev-181446/3b516d30-b380-11eb-94ad-0a1fb79b980c",
       "AmplifyAppId": "d3ohav223i1fja"
+    },
+    "categories": {
+      "auth": {
+        "amplifyphotobook83564ecd": {}
+      }
     }
   }
 }
