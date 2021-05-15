@@ -1,0 +1,37 @@
+mutation CreateAlbum {
+  createAlbum(
+    input: { owner: "user1", ownerId: "abc1234", name: "My first album" }
+  ) {
+    id
+    createdAt
+  }
+}
+
+mutation CreatePhoto {
+  createPhoto(
+    input: {
+      photoAlbumId: "0f890d57-62ff-4807-aeed-96f54c73f2c0"
+      fullsize: { region: "us-west-2", bucket: "my-bucket", key: "photo1" }
+    }
+  ) {
+    id
+    owner
+  }
+}
+
+query MyQuery {
+  listAlbums {
+    items {
+      id
+      name
+      photos(limit: 1) {
+        items {
+          fullsize {
+            region
+          }
+          id
+        }
+      }
+    }
+  }
+}
