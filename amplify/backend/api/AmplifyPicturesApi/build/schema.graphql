@@ -1,0 +1,285 @@
+type Album {
+  id: ID!
+  owner: ID!
+  ownerId: String!
+  name: String!
+  createdAt: String
+  updatedAt: String
+  photos(createdAt: ModelStringKeyConditionInput, filter: ModelPhotoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPhotoConnection @aws_iam @aws_cognito_user_pools
+}
+
+type Photo @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  createdAt: String
+  updatedAt: String
+  album: Album
+  fullsize: S3Object!
+  thumbnail: S3Object
+  contentType: String
+  gps: GPS
+  height: Int
+  width: Int
+  size: Int
+  owner: String
+}
+
+type S3Object @aws_iam @aws_cognito_user_pools {
+  region: String!
+  bucket: String!
+  key: String!
+}
+
+type GPS @aws_iam @aws_cognito_user_pools {
+  latitude: String!
+  longitude: String!
+  altitude: Float!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelAlbumConnection {
+  items: [Album]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelAlbumFilterInput {
+  id: ModelIDInput
+  owner: ModelIDInput
+  ownerId: ModelStringInput
+  name: ModelStringInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelAlbumFilterInput]
+  or: [ModelAlbumFilterInput]
+  not: ModelAlbumFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getAlbum(id: ID!): Album
+  listAlbums(filter: ModelAlbumFilterInput, limit: Int, nextToken: String): ModelAlbumConnection
+  getPhoto(id: ID!): Photo @aws_iam @aws_cognito_user_pools
+  listPhotos(filter: ModelPhotoFilterInput, limit: Int, nextToken: String): ModelPhotoConnection @aws_iam @aws_cognito_user_pools
+}
+
+input CreateAlbumInput {
+  id: ID
+  owner: ID!
+  ownerId: String!
+  name: String!
+  createdAt: String
+  updatedAt: String
+}
+
+input UpdateAlbumInput {
+  id: ID!
+  owner: ID
+  ownerId: String
+  name: String
+  createdAt: String
+  updatedAt: String
+}
+
+input DeleteAlbumInput {
+  id: ID
+}
+
+type Mutation {
+  createAlbum(input: CreateAlbumInput!, condition: ModelAlbumConditionInput): Album
+  updateAlbum(input: UpdateAlbumInput!, condition: ModelAlbumConditionInput): Album
+  deleteAlbum(input: DeleteAlbumInput!, condition: ModelAlbumConditionInput): Album
+  createPhoto(input: CreatePhotoInput!, condition: ModelPhotoConditionInput): Photo
+  deletePhoto(input: DeletePhotoInput!, condition: ModelPhotoConditionInput): Photo
+  updatePhoto(input: UpdatePhotoInput!, condition: ModelPhotoConditionInput): Photo @aws_iam @aws_cognito_user_pools
+}
+
+input ModelAlbumConditionInput {
+  ownerId: ModelStringInput
+  name: ModelStringInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelAlbumConditionInput]
+  or: [ModelAlbumConditionInput]
+  not: ModelAlbumConditionInput
+}
+
+type Subscription {
+  onCreateAlbum(owner: String!): Album @aws_subscribe(mutations: ["createAlbum"])
+  onUpdateAlbum(owner: String!): Album @aws_subscribe(mutations: ["updateAlbum"])
+  onDeleteAlbum(owner: String!): Album @aws_subscribe(mutations: ["deleteAlbum"])
+  onCreatePhoto(owner: String): Photo @aws_subscribe(mutations: ["createPhoto"]) @aws_iam @aws_cognito_user_pools
+  onUpdatePhoto(owner: String): Photo @aws_subscribe(mutations: ["updatePhoto"]) @aws_iam @aws_cognito_user_pools
+  onDeletePhoto(owner: String): Photo @aws_subscribe(mutations: ["deletePhoto"]) @aws_iam @aws_cognito_user_pools
+}
+
+input S3ObjectInput {
+  region: String!
+  bucket: String!
+  key: String!
+}
+
+input GPSInput {
+  latitude: String!
+  longitude: String!
+  altitude: Float!
+}
+
+type ModelPhotoConnection @aws_iam @aws_cognito_user_pools {
+  items: [Photo]
+  nextToken: String
+}
+
+input ModelPhotoFilterInput {
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  contentType: ModelStringInput
+  height: ModelIntInput
+  width: ModelIntInput
+  size: ModelIntInput
+  and: [ModelPhotoFilterInput]
+  or: [ModelPhotoFilterInput]
+  not: ModelPhotoFilterInput
+}
+
+input CreatePhotoInput {
+  id: ID
+  createdAt: String
+  updatedAt: String
+  fullsize: S3ObjectInput!
+  thumbnail: S3ObjectInput
+  contentType: String
+  gps: GPSInput
+  height: Int
+  width: Int
+  size: Int
+  photoAlbumId: ID
+}
+
+input UpdatePhotoInput {
+  id: ID!
+  createdAt: String
+  updatedAt: String
+  fullsize: S3ObjectInput
+  thumbnail: S3ObjectInput
+  contentType: String
+  gps: GPSInput
+  height: Int
+  width: Int
+  size: Int
+  photoAlbumId: ID
+}
+
+input DeletePhotoInput {
+  id: ID
+}
+
+input ModelPhotoConditionInput {
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  contentType: ModelStringInput
+  height: ModelIntInput
+  width: ModelIntInput
+  size: ModelIntInput
+  and: [ModelPhotoConditionInput]
+  or: [ModelPhotoConditionInput]
+  not: ModelPhotoConditionInput
+}
+
+input ModelStringKeyConditionInput {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  between: [String]
+  beginsWith: String
+}
