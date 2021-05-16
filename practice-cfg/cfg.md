@@ -1,6 +1,6 @@
-npm install -g @aws-amplify/cli
+-npm install -g @aws-amplify/cli
 
-vue create aws-photo-album:
+-vue create aws-photo-album:
 
 1. manual
 2. babel, router, vuex, css, linter
@@ -12,17 +12,17 @@ vue create aws-photo-album:
 8. dedicated config file
 9. don't save preset
 
-vue add tailwind (minimal)
+-vue add tailwind (minimal)
 
-npm install uuid (encrypted key)
+-npm install uuid (encrypted key)
 
-amplify configure (follow steps in AWS console > default)
+-amplify configure (follow steps in AWS console > default)
 
-npm install aws-amplify @aws-amplify/ui-vue (amplify library for vue, adding new vue components in project)
+-npm install aws-amplify @aws-amplify/ui-vue (amplify library for vue, adding new vue components in project)
 
 update main.js with amplify config
 
-amplify add auth (Amazon Cognito setup) >> amplify push (will auto update aws-exports.js)
+-amplify add auth (Amazon Cognito setup) >> amplify push (will auto update aws-exports.js)
 
 setup Auth Vuex Store
 
@@ -32,9 +32,9 @@ update tailwind assets
 
 update views
 
-amplify add storage (for auth users only)
+-amplify add storage (for auth users only)
 
-amplify add api (add GraphQL):
+-amplify add api (add GraphQL):
 
 1. GraphQL
 2. name
@@ -48,7 +48,7 @@ amplify add api (add GraphQL):
 
 update >> amplify/backend/api/schema.graphql
 
-amplify mock api (to test setup locally):
+-amplify mock api (to test setup locally):
 
 1. install Amazon Corretto 11 (java required)
 2. javascript
@@ -56,7 +56,7 @@ amplify mock api (to test setup locally):
 4. yes to generate/update ops
 5. 5 max depth (for practice purposes)
 
-amplify push (s3 storage, graphQL schema to the cloud)
+-amplify push (s3 storage, graphQL schema to the cloud)
 
 1. Yes
 2. No update
@@ -65,3 +65,19 @@ amplify push (s3 storage, graphQL schema to the cloud)
 now src/graphql files have been updated based on amplify/backend/api/schema.graphql
 
 create albums.js
+
+update AlbumsDetailPage
+
+-amplify add function
+
+1.  Lambda function (serverless function)
+2.  AmplifyPhotoProcessor
+3.  NodeJS
+4.  Hello World
+5.  Yes > Advanced
+6.  Yes > access from Lamda
+7.  api
+8.  Query, Mutation, Subscription
+9.  No
+10. No
+11. No
