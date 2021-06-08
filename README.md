@@ -5,4 +5,4 @@
 <img src="https://i.imgur.com/tugJ4dw.png" width="700">
 <img src="https://i.imgur.com/Hv6Hqwm.png" width="700">
 
-### [cfg](https://github.com/hulchenko/aws-photo-album/blob/main/cfg.md)
+### [cfg](https://github.com/hulchenko/aws-photo-album/blob/main/practice-cfg/cfg.md)
